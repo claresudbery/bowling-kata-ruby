@@ -9,11 +9,16 @@ RSpec.describe Bowling do
         expect(bowling.score(zero_scoring_rolls)).to eq(0)
     end
 
-    it 'adds pins to create score, when all rolls knock some (but not all) pins down' do
-        bowling = Bowling.new
-        zero_scoring_rolls = "44 44 44 44 44 44 44 44 44 44"
-        
-        expect(bowling.score(zero_scoring_rolls)).to eq(80)
+    expected_scores = {
+        "44 44 44 44 44 44 44 44 44 44" => 80
+        "22 22 22 22 22 22 22 22 22 22" => 40
+    }
+
+    expected_scores.each do |rolls, score|
+        it 'adds #{rolls} to create #{score}, because all rolls knock some (but not all) pins down' do
+            bowling = Bowling.new            
+            expect(bowling.score(rolls)).to eq(score)
+        end
     end
     
 end
