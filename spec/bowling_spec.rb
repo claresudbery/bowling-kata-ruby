@@ -11,7 +11,8 @@ RSpec.describe Bowling do
 
     expected_scores = {
         "44 44 44 44 44 44 44 44 44 44" => 80,
-        "22 22 22 22 22 22 22 22 22 22" => 42
+        "22 22 22 22 22 22 22 22 22 22" => 40,
+        "12 34 56 78 91 23 45 67 89 12" => 93
     }
 
     expected_scores.each do |rolls, score|
