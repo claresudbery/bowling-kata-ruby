@@ -10,25 +10,29 @@ RSpec.describe Bowling do
         expect(bowling.score(zero_scoring_rolls)).to eq(expected_score)
     end
 
-    expected_scores = {
+    expected_scores_no_spares_no_strikes = {
         "44 44 44 44 44 44 44 44 44 44" => 80,
         "22 22 22 22 22 22 22 22 22 22" => 40,
         "12 34 54 63 72 -- 9- 6- 8- 1-" => 61
     }
 
-    expected_scores.each do |rolls, score|
+    expected_scores_no_spares_no_strikes.each do |rolls, score|
         it "adds rolls in '#{rolls}' to score #{score}, because all rolls knock some (but not all) pins down" do
             bowling = Bowling.new            
             expect(bowling.score(rolls)).to eq(score)
         end
     end
 
-    it "adds ten to the score, plus pins from the next frame, when all pins are knocked down in one frame" do
-        bowling = Bowling.new
-        one_spare = "55 44 44 44 44 44 44 44 44 44"
-        expected_score = 10 + 8 + (8 * 9)
+    expected_scores_with_spares_no_strikes = {
+        "55 44 44 44 44 44 44 44 44 44" => 10 + 8 + (9 * 8),
+        "55 55 44 44 44 44 44 44 44 44" => (10 * 2) + (10 + 8) + (8 * 8)
+    }
 
-        expect(bowling.score(one_spare)).to eq(expected_score)
+    expected_scores_with_spares_no_strikes.each do |rolls, score|
+        it "adds ten to the score, plus pins from the next frame, when all pins felled in one frame: '#{rolls}'" do
+            bowling = Bowling.new            
+            expect(bowling.score(rolls)).to eq(score)
+        end
     end
     
 end
