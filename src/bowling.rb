@@ -1,16 +1,21 @@
 class Bowling
 
     ALL_PINS = 10
+    STRIKE = "X"
 
     def score(rolls)
         frames = rolls.split(" ")
         score = 0
-        frame_pin_sum = 0
+        prev_frame = ""
+        prev_frame_but_one = ""
 
         frames.each do |frame|
-            spare_score = spare_score(frame_pin_sum, frame)
+            strike_score = strike_score(prev_frame_but_one, prev_frame, frame)
+            spare_score = spare_score(prev_frame, frame)
             frame_pin_sum = sum_frame_pins(frame)
-            score = score + spare_score + frame_pin_sum
+            score = score + strike_score + spare_score + frame_pin_sum
+            prev_frame_but_one = prev_frame
+            prev_frame = frame
         end
         
         score
@@ -18,10 +23,20 @@ class Bowling
 
     private
 
-    def spare_score(previous_frame_pin_sum, this_frame)    
+    def strike_score(prev_frame_but_one, prev_frame, this_frame)    
+        strike_score = 0    
+
+        if prev_frame_but_one == STRIKE 
+            strike_score = sum_frame_pins(prev_frame) + sum_frame_pins(this_frame)
+        end
+
+        strike_score
+    end
+
+    def spare_score(prev_frame, this_frame)    
         spare_score = 0    
 
-        if previous_frame_pin_sum == ALL_PINS 
+        if prev_frame != STRIKE && sum_frame_pins(prev_frame) == ALL_PINS 
             spare_score = sum_frame_pins(this_frame)
         end
 
@@ -29,7 +44,7 @@ class Bowling
     end
 
     def sum_frame_pins(frame)
-        frame[0].to_i + frame[1].to_i
+        frame == STRIKE ? ALL_PINS : frame[0].to_i + frame[1].to_i
     end
 
 end
