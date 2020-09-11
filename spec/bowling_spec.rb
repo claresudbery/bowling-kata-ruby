@@ -38,5 +38,13 @@ RSpec.describe Bowling do
             expect(bowling.score(rolls)).to eq(score)
         end
     end
+
+    it "adds ten to the score, plus pins from the next two frames, when all pins felled in first try" do
+        bowling = Bowling.new
+        one_strike = "X 44 44 44 44 44 44 44 44 44"
+        expected_score = 10 + (2 * 8) + (9 * 8)
+
+        expect(bowling.score(one_strike)).to eq(expected_score)
+    end
     
 end
