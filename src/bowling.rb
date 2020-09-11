@@ -1,5 +1,5 @@
 class Bowling
     def score(rolls)
-        10
+        0
     end
 end
