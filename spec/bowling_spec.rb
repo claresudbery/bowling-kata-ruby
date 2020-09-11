@@ -5,8 +5,9 @@ RSpec.describe Bowling do
     it "returns zero score when all rolls are misses" do
         bowling = Bowling.new
         zero_scoring_rolls = "-- -- -- -- -- -- -- -- -- --"
+        expected_score = 0
 
-        expect(bowling.score(zero_scoring_rolls)).to eq(0)
+        expect(bowling.score(zero_scoring_rolls)).to eq(expected_score)
     end
 
     expected_scores = {
