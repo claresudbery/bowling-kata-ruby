@@ -1,3 +1,5 @@
+require_relative '../src/bowling'
+
 RSpec.describe Bowling do
 
     it 'creates a Bowling class' do
