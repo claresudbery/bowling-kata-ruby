@@ -38,5 +38,16 @@ RSpec.describe Bowling do
             expect(bowling.score(rolls)).to eq(score)
         end
     end
+
+    expected_scores_with_strikes_no_spares = {
+        "X 44 44 44 44 44 44 44 44 44" => 10 + 8 + (9*8)
+    }
+
+    expected_scores_with_strikes_no_spares.each do |rolls, score|
+        it "adds ten to the score, plus pins from the next two frames, when there is a strike: '#{rolls}'" do
+            bowling = Bowling.new            
+            expect(bowling.score(rolls)).to eq(score)
+        end
+    end
     
 end
