@@ -33,7 +33,7 @@ RSpec.describe Bowling do
     }
 
     expected_scores_with_spares_no_strikes.each do |rolls, score|
-        it "adds ten to the score, plus pins from the next frame, when all pins felled in one frame: '#{rolls}'" do
+        it "adds ten to the score, plus pins from the next roll, when all pins felled in one frame: '#{rolls}'" do
             bowling = Bowling.new            
             expect(bowling.score(rolls)).to eq(score)
         end
@@ -41,15 +41,26 @@ RSpec.describe Bowling do
 
     expected_scores_with_strikes_no_spares = {
         "X 44 44 44 44 44 44 44 44 44" => 10 + 8 + (9*8),
-        "X X 44 44 44 44 44 44 44 44" => (10*2) + (10+8) + (8*8),
-        "44 44 X X 44 44 44 44 44 44" => (10*2) + (10+8) + (8*8),
+        "X 44 X 44 44 44 44 44 44 44" => (10*2) + (8+8) + (8*8),
+        "44 44 X 44 X 44 44 44 44 44" => (10*2) + (8+8) + (8*8),
         "42 62 X 14 X X 33 X 11 11" => (5+10+6+2) + (6+8+10+5+10+10+6+10+2+2),
         "4- -2 X 14 X X 33 X -- 11" => (5+10+6+0) + (4+2+10+5+10+10+6+10+0+2),
         "X -2 X 41 X 81 3- X -- 11" => (2+5+9+0) + (10+2+10+5+10+9+3+10+0+2)
     }
 
     expected_scores_with_strikes_no_spares.each do |rolls, score|
-        it "adds ten to the score, plus pins from the next two frames, when there is a strike: '#{rolls}'" do
+        it "adds ten to the score, plus pins from the next two rolls, when there is a strike: '#{rolls}'" do
+            bowling = Bowling.new            
+            expect(bowling.score(rolls)).to eq(score)
+        end
+    end
+
+    expected_scores_with_strikes_followed_by_strikes = {
+        "X X 44 44 44 44 44 44 44 44" => (10*2) + (14+8) + (8*8)
+    }
+
+    expected_scores_with_strikes_followed_by_strikes.each do |rolls, score|
+        it "adds ten to the score, plus pins from the next two rolls, when there are multiple strikes in a row: '#{rolls}'" do
             bowling = Bowling.new            
             expect(bowling.score(rolls)).to eq(score)
         end
