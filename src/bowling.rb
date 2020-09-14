@@ -11,7 +11,7 @@ class Bowling
 
         for index in 0...frames.length()
             frame_pin_sum = sum_frame_pins(frames[index])
-            strike_score = strike_score(prev_frame_but_one, prev_frame, frames[index])
+            strike_score = strike_score(frames[index], frames[index+1], frames[index+2])
             spare_score = spare_score(frames[index], frames[index+1])
 
             score = score + strike_score + spare_score + frame_pin_sum
@@ -25,11 +25,11 @@ class Bowling
 
     private
 
-    def strike_score(prev_frame_but_one, prev_frame, this_frame)    
+    def strike_score(this_frame, next_frame, frame_after_next)    
         strike_score = 0    
 
-        if prev_frame == STRIKE 
-            strike_score = sum_frame_pins(this_frame)
+        if this_frame == STRIKE 
+            strike_score = sum_frame_pins(next_frame)
         end
 
         strike_score
