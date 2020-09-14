@@ -25,6 +25,9 @@ class Bowling
 
         if this_frame == STRIKE 
             strike_score = sum_frame_pins(next_frame)
+            if next_frame == STRIKE 
+                strike_score = strike_score + frame_after_next[0].to_i
+            end
         end
 
         strike_score
