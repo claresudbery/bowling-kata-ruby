@@ -9,10 +9,12 @@ class Bowling
         prev_frame = ""
 
         frames.each do |frame|
+            frame_pin_sum = sum_frame_pins(frame)
             strike_score = strike_score(prev_frame, frame)
             spare_score = spare_score(prev_frame, frame)
-            frame_pin_sum = sum_frame_pins(frame)
+
             score = score + strike_score + spare_score + frame_pin_sum
+            
             prev_frame = frame
         end
         
