@@ -89,11 +89,11 @@ RSpec.describe Bowling do
     end
 
     expected_scores_with_a_spare_scored_in_one_roll = {
-        "44 44 -10 44 44 44 44 44 44 44" => (9*8) + (10+4)
+        "44 44 -X 44 44 44 44 44 44 44" => (9*8) + (10+4)
     }
 
     expected_scores_with_a_spare_scored_in_one_roll.each do |rolls, score|
-        it "adds the final two rolls to the score twice, when a strike is rolled in the final frame: '#{rolls}'" do
+        it "treats it as a spare, when the second roll in a frame knocks down all ten pins: '#{rolls}'" do
             bowling = Bowling.new            
             expect(bowling.score(rolls)).to eq(score)
         end
