@@ -14,7 +14,7 @@ class Bowling
             spare_score = spare_score(prev_frame, frame)
 
             score = score + strike_score + spare_score + frame_pin_sum
-            
+
             prev_frame = frame
         end
         
@@ -44,7 +44,9 @@ class Bowling
     end
 
     def sum_frame_pins(frame)
-        frame == STRIKE ? ALL_PINS : frame[0].to_i + frame[1].to_i
+        frame == STRIKE \
+            ? ALL_PINS \
+            : frame[0].to_i + frame[1].to_i
     end
 
 end
