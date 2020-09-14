@@ -55,17 +55,45 @@ RSpec.describe Bowling do
         end
     end
 
-    expected_scores_with_strikes_followed_by_strikes = {
-        "X X 44 44 44 44 44 44 44 44" => (10*2) + (14+8) + (8*8),
-        "X X -4 44 44 44 44 44 44 44" => (10*2) + (10+4) + (4+(7*8)),
-        "X X 4- 44 44 44 44 44 44 44" => (10*2) + (14+4) + (4+(7*8)),
-        "X X -- 44 44 44 44 44 44 44" => (10*2) + (10+0) + (7*8),
-        "X X X 44 44 44 44 44 44 44" => (10*3) + (20+14+8) + (8*7),
-        "X X X 44 X X 44 44 44 44" => (10*5) + (20+14+8+14+8) + (8*5)
+    expected_scores_with_strikes_and_spares = {
+        "X 44 55 44 X 44 55 44 X 44" => (10*5) + (8+8+8) + (4+4) + (8*5)
     }
 
-    expected_scores_with_strikes_followed_by_strikes.each do |rolls, score|
-        it "adds ten to the score, plus pins from the next two rolls, when there are multiple strikes in a row: '#{rolls}'" do
+    expected_scores_with_strikes_and_spares.each do |rolls, score|
+        it "adds ten to the score, plus pins from the next two frames, when there is a strike: '#{rolls}'" do
+            bowling = Bowling.new            
+            expect(bowling.score(rolls)).to eq(score)
+        end
+    end
+
+    expected_scores_with_a_spare_in_the_tenth_frame = {
+        "44 44 44 44 44 44 44 44 44 463" => (9*8) + (10+3+3)
+    }
+
+    expected_scores_with_a_spare_in_the_tenth_frame.each do |rolls, score|
+        it "adds the final roll to the score twice, when a spare is rolled in the final frame: '#{rolls}'" do
+            bowling = Bowling.new            
+            expect(bowling.score(rolls)).to eq(score)
+        end
+    end
+
+    expected_scores_with_a_strike_in_the_tenth_frame = {
+        "44 44 44 44 44 44 44 44 44 X32" => (9*8) + (10+(3+2)+(3+2))
+    }
+
+    expected_scores_with_a_strike_in_the_tenth_frame.each do |rolls, score|
+        it "adds the final two rolls to the score twice, when a strike is rolled in the final frame: '#{rolls}'" do
+            bowling = Bowling.new            
+            expect(bowling.score(rolls)).to eq(score)
+        end
+    end
+
+    expected_scores_with_a_spare_scored_in_one_roll = {
+        "44 44 -10 44 44 44 44 44 44 44" => (9*8) + (10+4)
+    }
+
+    expected_scores_with_a_spare_scored_in_one_roll.each do |rolls, score|
+        it "adds the final two rolls to the score twice, when a strike is rolled in the final frame: '#{rolls}'" do
             bowling = Bowling.new            
             expect(bowling.score(rolls)).to eq(score)
         end
