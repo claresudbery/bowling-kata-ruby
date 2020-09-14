@@ -65,38 +65,5 @@ RSpec.describe Bowling do
             expect(bowling.score(rolls)).to eq(score)
         end
     end
-
-    expected_scores_with_a_spare_in_the_tenth_frame = {
-        "44 44 44 44 44 44 44 44 44 463" => (9*8) + (10+3+3)
-    }
-
-    expected_scores_with_a_spare_in_the_tenth_frame.each do |rolls, score|
-        it "adds the final roll to the score twice, when a spare is rolled in the final frame: '#{rolls}'" do
-            bowling = Bowling.new            
-            expect(bowling.score(rolls)).to eq(score)
-        end
-    end
-
-    expected_scores_with_a_strike_in_the_tenth_frame = {
-        "44 44 44 44 44 44 44 44 44 X32" => (9*8) + (10+(3+2)+(3+2))
-    }
-
-    expected_scores_with_a_strike_in_the_tenth_frame.each do |rolls, score|
-        it "adds the final two rolls to the score twice, when a strike is rolled in the final frame: '#{rolls}'" do
-            bowling = Bowling.new            
-            expect(bowling.score(rolls)).to eq(score)
-        end
-    end
-
-    expected_scores_with_a_spare_scored_in_one_roll = {
-        "44 44 -X 44 44 44 44 44 44 44" => (9*8) + (10+4)
-    }
-
-    expected_scores_with_a_spare_scored_in_one_roll.each do |rolls, score|
-        it "treats it as a spare, when the second roll in a frame knocks down all ten pins: '#{rolls}'" do
-            bowling = Bowling.new            
-            expect(bowling.score(rolls)).to eq(score)
-        end
-    end
     
 end
