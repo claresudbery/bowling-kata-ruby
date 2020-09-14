@@ -56,7 +56,10 @@ RSpec.describe Bowling do
     end
 
     expected_scores_with_strikes_followed_by_strikes = {
-        "X X 44 44 44 44 44 44 44 44" => (10*2) + (14+8) + (8*8)
+        "X X 44 44 44 44 44 44 44 44" => (10*2) + (14+8) + (8*8),
+        "X X -4 44 44 44 44 44 44 44" => (10*2) + (10+4) + (4+(7*8)),
+        "X X 4- 44 44 44 44 44 44 44" => (10*2) + (14+4) + (4+(7*8)),
+        "X X -- 44 44 44 44 44 44 44" => (10*2) + (10+0) + (7*8)
     }
 
     expected_scores_with_strikes_followed_by_strikes.each do |rolls, score|
