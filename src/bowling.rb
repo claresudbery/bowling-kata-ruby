@@ -6,8 +6,6 @@ class Bowling
     def score(rolls)
         frames = rolls.split(" ")
         score = 0
-        prev_frame_but_one = ""
-        prev_frame = ""
 
         for index in 0...frames.length()
             frame_pin_sum = sum_frame_pins(frames[index])
@@ -15,9 +13,6 @@ class Bowling
             spare_score = spare_score(frames[index], frames[index+1])
 
             score = score + strike_score + spare_score + frame_pin_sum
-
-            prev_frame_but_one = prev_frame
-            prev_frame = frames[index]
         end
         
         score
