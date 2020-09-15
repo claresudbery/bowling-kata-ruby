@@ -37,7 +37,7 @@ class Bowling
         spare_score = 0    
 
         if this_frame != STRIKE && sum_frame_pins(this_frame) == ALL_PINS 
-            spare_score = next_frame[0].to_i
+            spare_score = first_frame_pin(next_frame)
         end
 
         spare_score
