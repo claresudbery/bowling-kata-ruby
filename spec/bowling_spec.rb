@@ -93,7 +93,9 @@ RSpec.describe Bowling do
     end
 
     expected_scores_with_a_spare_in_the_tenth_frame = {
-        "44 44 44 44 44 44 44 44 44 46 3" => (9*8) + (10+3)
+        "44 44 44 44 44 44 44 44 44 46 3" => (9*8) + (10+3),
+        "44 44 44 44 44 44 44 44 44 46 X" => (9*8) + (10+10),
+        "44 44 44 44 44 44 44 44 44 46 -" => (9*8) + (10+0)
     }
 
     expected_scores_with_a_spare_in_the_tenth_frame.each do |rolls, score|
