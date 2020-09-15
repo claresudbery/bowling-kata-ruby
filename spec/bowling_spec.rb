@@ -74,7 +74,7 @@ RSpec.describe Bowling do
     it "adds ten to the score, plus another ten, when a spare is followed by a strike" do
         bowling = Bowling.new
         spare_followed_by_strike = "37 X 44 44 44 44 44 44 44 44"
-        expected_score = (10+10) + 10 + (8*8)
+        expected_score = (10+10) + (10+8) + (8*8)
 
         expect(bowling.score(spare_followed_by_strike)).to eq(expected_score)
     end
