@@ -46,13 +46,7 @@ class Bowling
     def sum_frame_pins(frame)
         frame == STRIKE \
             ? ALL_PINS \
-            : frame[0].to_i + frame[1].to_i
-    end
-
-    def first_frame_pin(frame)
-        frame == STRIKE \
-            ? ALL_PINS \
-            : frame[0].to_i
+            : roll_score(frame[0]) + roll_score(frame[1])
     end
 
     def roll_score(roll)
