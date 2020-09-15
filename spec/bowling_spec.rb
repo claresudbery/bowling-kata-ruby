@@ -124,5 +124,16 @@ RSpec.describe Bowling do
             expect(bowling.score(rolls)).to eq(score)
         end
     end
+
+    expected_scores_with_spares_using_proper_spare_notation = {
+        "5/ 44 44 44 44 44 44 44 44 44" => 10 + 4 + (9*8)
+    }
+
+    expected_scores_with_spares_using_proper_spare_notation.each do |rolls, score|
+        it "adds ten to the score, plus pins from the next roll, when spare is scored and official notation used: '#{rolls}'" do
+            bowling = Bowling.new            
+            expect(bowling.score(rolls)).to eq(score)
+        end
+    end
     
 end
