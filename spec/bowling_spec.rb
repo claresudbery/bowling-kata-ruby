@@ -24,12 +24,12 @@ RSpec.describe Bowling do
     end
 
     expected_scores_with_spares_no_strikes = {
-        "55 44 44 44 44 44 44 44 44 44" => 10 + 4 + (9*8),
-        "55 55 44 44 44 44 44 44 44 44" => (10*2) + (5+4) + (8*8),
-        "44 44 55 55 44 44 44 44 44 44" => (10*2) + (5+4) + (8*8),
-        "44 44 46 91 44 44 44 44 44 44" => (10*2) + (9+4) + (8*8),
-        "42 62 37 14 55 91 33 28 11 11" => (1+9+3+1) + (6+8+10+5+10+10+6+10+2+2),
-        "46 -2 37 41 55 91 3- 28 -- 11" => (0+4+9+3+0) + (10+2+10+5+10+10+3+10+0+2)
+        "5/ 44 44 44 44 44 44 44 44 44" => 10 + 4 + (9*8),
+        "5/ 5/ 44 44 44 44 44 44 44 44" => (10*2) + (5+4) + (8*8),
+        "44 44 5/ 5/ 44 44 44 44 44 44" => (10*2) + (5+4) + (8*8),
+        "44 44 4/ 9/ 44 44 44 44 44 44" => (10*2) + (9+4) + (8*8),
+        "42 62 3/ 14 5/ 9/ 33 2/ 11 11" => (1+9+3+1) + (6+8+10+5+10+10+6+10+2+2),
+        "4/ -2 3/ 41 5/ 9/ 3- 2/ -- 11" => (0+4+9+3+0) + (10+2+10+5+10+10+3+10+0+2)
     }
 
     expected_scores_with_spares_no_strikes.each do |rolls, score|
@@ -73,16 +73,16 @@ RSpec.describe Bowling do
     
     it "adds ten to the score, plus another ten, when a spare is followed by a strike" do
         bowling = Bowling.new
-        spare_followed_by_strike = "37 X 44 44 44 44 44 44 44 44"
+        spare_followed_by_strike = "3/ X 44 44 44 44 44 44 44 44"
         expected_score = (10+10) + (10+8) + (8*8)
 
         expect(bowling.score(spare_followed_by_strike)).to eq(expected_score)
     end
 
     expected_scores_with_strikes_and_spares = {
-        "X 44 55 44 X 44 55 44 X 44" => (10*5) + (8+8+8) + (4+4) + (8*5),
-        "X 55 X 46 X 82 X 19 X 44" => (9*10) + 8 + ((4*10)+8) + (4*10),
-        "X X 55 46 X X 82 19 X 44" => (9*10) + 8 + (15+10+18+10+8) + (4+10+1+10)
+        "X 44 5/ 44 X 44 5/ 44 X 44" => (10*5) + (8+8+8) + (4+4) + (8*5),
+        "X 5/ X 4/ X 8/ X 1/ X 44" => (9*10) + 8 + ((4*10)+8) + (4*10),
+        "X X 5/ 4/ X X 8/ 1/ X 44" => (9*10) + 8 + (15+10+18+10+8) + (4+10+1+10)
     }
 
     expected_scores_with_strikes_and_spares.each do |rolls, score|
@@ -93,9 +93,9 @@ RSpec.describe Bowling do
     end
 
     expected_scores_with_a_spare_in_the_tenth_frame = {
-        "44 44 44 44 44 44 44 44 44 46 3" => (9*8) + (10+3),
-        "44 44 44 44 44 44 44 44 44 46 X" => (9*8) + (10+10),
-        "44 44 44 44 44 44 44 44 44 46 -" => (9*8) + (10+0)
+        "44 44 44 44 44 44 44 44 44 4/ 3" => (9*8) + (10+3),
+        "44 44 44 44 44 44 44 44 44 4/ X" => (9*8) + (10+10),
+        "44 44 44 44 44 44 44 44 44 4/ -" => (9*8) + (10+0)
     }
 
     expected_scores_with_a_spare_in_the_tenth_frame.each do |rolls, score|
@@ -120,17 +120,6 @@ RSpec.describe Bowling do
 
     expected_scores_with_a_strike_in_the_tenth_frame.each do |rolls, score|
         it "adds the final two rolls to the score twice, when a strike is rolled in the final frame: '#{rolls}'" do
-            bowling = Bowling.new            
-            expect(bowling.score(rolls)).to eq(score)
-        end
-    end
-
-    expected_scores_with_spares_using_proper_spare_notation = {
-        "5/ 44 44 44 44 44 44 44 44 44" => 10 + 4 + (9*8)
-    }
-
-    expected_scores_with_spares_using_proper_spare_notation.each do |rolls, score|
-        it "adds ten to the score, plus pins from the next roll, when spare is scored and official notation used: '#{rolls}'" do
             bowling = Bowling.new            
             expect(bowling.score(rolls)).to eq(score)
         end
