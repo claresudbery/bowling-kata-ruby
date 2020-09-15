@@ -45,7 +45,7 @@ class Bowling
     end
 
     def is_spare?(frame)
-        frame != STRIKE && ((sum_frame_pins(frame) == ALL_PINS) || (frame[1] == SPARE))
+        (frame != STRIKE) && (frame[1] == SPARE)
     end
 
     def sum_frame_pins(frame)
