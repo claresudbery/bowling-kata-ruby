@@ -104,5 +104,16 @@ RSpec.describe Bowling do
             expect(bowling.score(rolls)).to eq(score)
         end
     end
+
+    expected_scores_with_a_strike_in_the_tenth_frame = {
+        "44 44 44 44 44 44 44 44 44 X 32" => (9*8) + (10+3+2)
+    }
+
+    expected_scores_with_a_strike_in_the_tenth_frame.each do |rolls, score|
+        it "adds the final two rolls to the score twice, when a strike is rolled in the final frame: '#{rolls}'" do
+            bowling = Bowling.new            
+            expect(bowling.score(rolls)).to eq(score)
+        end
+    end
     
 end
