@@ -60,7 +60,7 @@ RSpec.describe Bowling do
     }
 
     expected_scores_with_strikes_and_spares.each do |rolls, score|
-        it "adds ten to the score, plus pins from the next two frames, when there is a strike: '#{rolls}'" do
+        it "adds pins only for the relevant scores when there is a mixture of strikes and spares: '#{rolls}'" do
             bowling = Bowling.new            
             expect(bowling.score(rolls)).to eq(score)
         end
