@@ -26,7 +26,7 @@ class Bowling
         if this_frame == STRIKE 
             strike_score = sum_frame_pins(next_frame)
             if next_frame == STRIKE 
-                strike_score = strike_score + first_frame_pin(frame_after_next)
+                strike_score = strike_score + roll_score(frame_after_next[0])
             end
         end
 
@@ -37,7 +37,7 @@ class Bowling
         spare_score = 0    
 
         if this_frame != STRIKE && sum_frame_pins(this_frame) == ALL_PINS 
-            spare_score = first_frame_pin(next_frame)
+            spare_score = roll_score(next_frame[0])
         end
 
         spare_score
@@ -53,6 +53,12 @@ class Bowling
         frame == STRIKE \
             ? ALL_PINS \
             : frame[0].to_i
+    end
+
+    def roll_score(roll)
+        roll == STRIKE \
+            ? ALL_PINS \
+            : roll.to_i
     end
 
 end
