@@ -54,6 +54,22 @@ RSpec.describe Bowling do
             expect(bowling.score(rolls)).to eq(score)
         end
     end
+    
+    expected_scores_with_strikes_followed_by_strikes = {
+        "X X 44 44 44 44 44 44 44 44" => (10*2) + (14+8) + (8*8),
+        "X X -4 44 44 44 44 44 44 44" => (10*2) + (10+4) + (4+(7*8)),
+        "X X 4- 44 44 44 44 44 44 44" => (10*2) + (14+4) + (4+(7*8)),
+        "X X -- 44 44 44 44 44 44 44" => (10*2) + (10+0) + (7*8),
+        "X X X 44 44 44 44 44 44 44" => (10*3) + (20+14+8) + (8*7),
+        "X X X 44 X X 44 44 44 44" => (10*5) + (20+14+8+14+8) + (8*5)
+    }
+
+    expected_scores_with_strikes_followed_by_strikes.each do |rolls, score|
+        it "adds ten to the score, plus pins from the next two rolls, when there are multiple strikes in a row: '#{rolls}'" do
+		    bowling = Bowling.new            
+            expect(bowling.score(rolls)).to eq(score)
+        end
+	end
 
     expected_scores_with_strikes_and_spares = {
         "X 44 55 44 X 44 55 44 X 44" => (10*5) + (8+8+8) + (4+4) + (8*5)
