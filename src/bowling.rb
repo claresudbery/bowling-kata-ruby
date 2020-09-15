@@ -2,6 +2,7 @@ class Bowling
 
     ALL_PINS = 10
     STRIKE = "X"
+    SPARE = "/"
 
     def score(rolls)
         frames = rolls.split(" ")
@@ -36,15 +37,19 @@ class Bowling
     def spare_score(this_frame, next_frame)    
         spare_score = 0    
 
-        if this_frame != STRIKE && sum_frame_pins(this_frame) == ALL_PINS 
+        if is_spare?(this_frame)  
             spare_score = roll_score(next_frame[0])
         end
 
         spare_score
     end
 
+    def is_spare?(frame)
+        frame != STRIKE && ((sum_frame_pins(frame) == ALL_PINS) || (frame[1] == SPARE))
+    end
+
     def sum_frame_pins(frame)
-        frame == STRIKE \
+        frame == STRIKE || frame[1] == SPARE \
             ? ALL_PINS \
             : roll_score(frame[0]) + roll_score(frame[1])
     end
