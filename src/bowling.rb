@@ -7,7 +7,7 @@ class Bowling
         frames = rolls.split(" ")
         score = 0
 
-        for index in 0...frames.length()
+        for index in 0...10
             frame_pin_sum = sum_frame_pins(frames[index])
             strike_score = strike_score(frames[index], frames[index+1], frames[index+2])
             spare_score = spare_score(frames[index], frames[index+1])
