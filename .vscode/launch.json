@@ -5,6 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "ruby-debug",
+            "request": "launch",
+            "name": "Launch File",
+            "program": "${workspaceFolder}/${command:AskForProgramName}",
+            "programArgs": [],
+            "useBundler": false
+        },
+        {
             "name": "RSpec - active spec file only",
             "type": "Ruby",
             "request": "launch",
@@ -33,7 +41,14 @@
             "request": "attach",
             "remoteHost": "127.0.0.1",
             "remotePort": "1234",
-            "remoteWorkspaceRoot": "${workspaceRoot}"
+            "remoteWorkspaceRoot": "${workspaceRoot}",
+            "program": "${workspaceRoot}",
+            "args": [
+                "-t",
+                "hello world",
+                "-l",
+                "5"
+            ]
         },
         {
           "type": "ruby-debug",
