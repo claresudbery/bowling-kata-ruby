@@ -23,9 +23,11 @@
             "args": [
                 "-I",
                 "${workspaceRoot}"
-            ]
+            ],
+            "cwd": "${workspaceRoot}"
         },
         {
+            "cwd": "${workspaceRoot}",
             "name": "Listen for rdebug-ide",
             "type": "Ruby",
             "request": "attach",
@@ -38,7 +40,7 @@
           "request": "launch",
           "name": "Ruby",
           "program": "${file}",
-          "programArgs": [],
+          "programArgs": ["X X 5/ 4/ X X 8/ 1/ X X -5"],
           "useBundler": false
         },
         {

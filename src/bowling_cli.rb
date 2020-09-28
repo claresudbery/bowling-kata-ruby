@@ -31,6 +31,7 @@ else
     if stdinput
         puts Bowling.new.score(stdinput)
     else
-        puts "Please give a value for --rolls (-r)"  
+        puts "You didn't give a value for --rolls (-r), so I'm using the default value of 'X X 5/ 4/ X X 8/ 1/ X X -5'"  
+        puts Bowling.new.score('X X 5/ 4/ X X 8/ 1/ X X -5')
     end
 end 
