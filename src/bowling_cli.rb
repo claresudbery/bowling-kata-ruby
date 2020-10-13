@@ -1,13 +1,6 @@
 #!/usr/bin/env ruby
 
-# There are two ways of using this.
-# 1. Enter the inputs as a command line param, like this: 
-#       ./src/bowling_cli.rb -r 'X X 5/ 4/ X X 8/ 1/ X X -5'
-# 2. Pipe in the input, like this: 
-#       echo 'X X 5/ 4/ X X 8/ 1/ X X -5' | ./src/bowling_cli.rb
-# 3. Run the code with no params, then you will be prompted to enter the text on the command line. Like this:
-#       ./src/bowling_cli.rb
-#       (Then enter X X 5/ 4/ X X 8/ 1/ X X -5 on the command line afterwards)
+# see readme.md for usage instructions
 
 
 require_relative './bowling'
